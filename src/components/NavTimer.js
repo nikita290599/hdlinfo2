@@ -9,6 +9,7 @@ const NavTimer = (props) => {
         }
         else {
             updateCount(60);
+            props.updateCrypto(props.curr);
         }
     }
     useEffect(() => {
