@@ -5,18 +5,33 @@ import logo1 from "../images/bibbns-logo.png"
 import logo2 from "../images/colodax-logo.png"
 import logo3 from "../images/zebpay-logo.png"
 import logo4 from "../images/coincdx-logo.png"
-import React from "react"
+import React, { useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 const Body = (props) => {
   const images =[logo0 , logo1,logo2,logo3,logo4]
+  
+  const location = useLocation();
+  // useEffect(()=>{
+  //    if(JSON.stringify(location.pathname)===""){
+  //      props.updateCrypto('BTC');
+  //    }
+  //    else{
+
+  //    const current= JSON.stringify(location.pathname);
+  //    props.updateCrypto(current.slice(2,-1));
+  //    }
+  // });
+  //console.log("location ",location.pathname);
+  
   // function to render table data 
   const renderData = () => {
     
     return(
       props.respData.maindata.map((item,index)=>{
-        let logo="logo"+index;
+        
         return(
-          <React.Fragment>
-          <tr>
+          <React.Fragment key={index}>
+          <tr >
           <th scope="row">{index}</th>
           <td className='d-flex align-items-center justify-content-center'><img className='rounded-cirle' src={images[index]} alt={"logo"+index} width="10%" style={{ borderRadius: "50%", marginRight: "4%" }}></img><span>{item.name}</span></td>
           <td>₹ {Math.floor(item.last_trade_price)}</td>

@@ -1,15 +1,21 @@
-
+import { useState } from "react";
 import { Link } from "react-router-dom";
 const NavDropDown = (props) => {
-    const updateCurrentCrypto = (item) => {
-        props.updateCrypto(item);
-        console.log(props.curr);
+    
+    async function updateCurrentCrypto(item){
+        // const newer =e.target.id;
+        await props.updateCrypto(item);
+        // console.log("value",e.target.id);
+        console.log("item",item);
+        console.log("CURRENT CRYPTO ",props.curr);
+        
     }
+    
     const renderCrypto = () => {
 
-        return props.crypto.map((item, INDEX) => {
+        return props.crypto.map((item,INDEX) => {
             return (
-                <Link to={'/' + item} key={INDEX} className="dropdown-item" onClick={() => updateCurrentCrypto(item)}>{item}</Link>
+                <Link to={'/' + item} id={item} key={INDEX} valued={item} className="dropdown-item" onClick={()=>{updateCurrentCrypto(item)}} >{item}</Link>
             )
         });
     }
